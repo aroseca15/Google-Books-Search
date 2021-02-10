@@ -24,6 +24,7 @@ function Header() {
 
             <section className='row'>
                 <h1>Welcome to the React Google Book Search!!!!</h1>
+                <h4>Search for and Save Books that Interest You. </h4>
             </section>
         </main>
 

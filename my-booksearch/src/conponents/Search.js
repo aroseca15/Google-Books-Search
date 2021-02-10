@@ -1,8 +1,8 @@
 import API from '../utils/Api';
-import {useState} from 'react';
+import { useState } from 'react';
 
 function Search() {
-    const [books, setBooks] = useState({items: []});
+    const [books, setBooks] = useState({ items: [] });
     const [searchStrings, setsearchStrings] = useState({});
 
     function handleInputChange(event) {
@@ -21,6 +21,27 @@ function Search() {
         }
     };
 
+    function Saved(book) {
+        return (event) => {
+            event.preventDefault();
+            if (book) {
+                let authors = book.volumeInfo.authors;
+                if (Array.isArray(authors)) {
+                    authors = authors.join(
+                        ', '
+                    )
+                }
+                API.saveBook({
+                    title: book.volumeInfo.title,
+                    author: authors,
+                    description: book.volumeInfo.description
+                })
+                    .then(res => console.log(book))
+                    .catch(err => console.log(err));
+            }
+        }
+    };
+
 
     return (
         <main>
@@ -36,16 +57,20 @@ function Search() {
                 </div>
             </nav>
             <section className='row'>
-               {books.items.map(
-                   book=> {
-                       return (<div className='card' key={book.id}>
-                           <h3>{book.volumeInfo.title}</h3>
-                           <image src={book.volumeInfo.imageLinks.thumbnail}></image>
-                           <h5>{book.volumeInfo.authors}</h5>
-                           <p>{book.volumeInfo.description}</p>
-                       </div>)
-                   }
-               )}
+                {books.items.map(
+                    book => {
+                        return (<div className='card' key={book.id}>
+                            <h3 className='col align-self-center'>{book.volumeInfo.title}</h3>
+                            {/* <image>{book.volumeInfo.image}</image> */}
+                            <h5 className='col align-self-center'>{book.volumeInfo.authors}</h5>
+                            <p className='col align-self-end'>{book.volumeInfo.description}</p>
+                            <div>
+                                {/* <button type="button" class="btn btn-dark">View</button> */}
+                                <button type="button" onClick={Saved(book)} class="btn btn-secondary">Save Book</button>
+                            </div>
+                        </div>)
+                    }
+                )}
             </section>
         </main>
 
