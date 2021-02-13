@@ -1,7 +1,7 @@
 {
   "name": "google-books-search",
   "version": "1.0.0",
-  "description": "Book description  search and save.",
+  "description": "book search",
   "main": "server.js",
   "dependencies": {
     "axios": "^0.21.1",
@@ -15,24 +15,16 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:prod": "node server.js",
-    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
-    "client": "cd my-booksearch && npm run start",
-    "seed": "node scripts/seedDB.js",
-    "install": "cd client && npm install",
-    "build": "cd client && npm run build"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd my-booksearch && node server.js",
+    "build": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aroseca15/Google-Books-Search.git"
   },
-  "keywords": [
-    "run",
-    "start"
-  ],
   "author": "Amanda MacDonald",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/aroseca15/Google-Books-Search/issues"
   },
