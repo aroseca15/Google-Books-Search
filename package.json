@@ -2,7 +2,7 @@
   "name": "google-books-search",
   "version": "1.0.0",
   "description": "book search",
-  "main": "server.js",
+  "main": "my-booksearch/build",
   "dependencies": {
     "axios": "^0.21.1",
     "build": "^0.1.4",
@@ -11,13 +11,15 @@
     "if-env": "^1.0.4",
     "mongoose": "^5.11.15",
     "nodemon": "^2.0.7",
+    "path": "^0.12.7",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd my-booksearch && node server.js",
-    "build": "npm run build"
+    "start": "concurrently --kill-others \"node server.js\" \"cd my-booksearch && npm start\"",
+    "build": "npm run build",
+    "postinstall": "cd my-booksearch && npm install"
   },
   "repository": {
     "type": "git",
